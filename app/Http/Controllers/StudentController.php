@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StudentRequest;
-use App\Models\Student;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use App\Models\Student;
+use App\Http\Requests\StudentRequest;
 
 
 class StudentController extends Controller
@@ -15,9 +15,10 @@ class StudentController extends Controller
      */
     public function index()
     {
-        // $students = Student::all();
-        $students =Student::paginate(10);
-        return view('students', compact('students'));
+        //
+        // $students=Student::all();
+        $students=Student::paginate(10);
+        return view('students',compact('students'));
     }
 
     /**
@@ -28,33 +29,51 @@ class StudentController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StudentRequest $request)
+
+
+    public function show(string $id)
     {
-        $student = new Student;
-        $student->name_student = $request->name_student;
-        $student->lastname_student = $request->lastname_student;
-        $student->id_student = $request->id_student;
-        $student->birthday = $request->birthday;
-        $student->comments = $request->comments;
-        $student->save();
+        //
+        $student=Student::find($id);
+        return view('show-student',compact('student'));
+    }
+
+
+
+
+    // Método para almacenar un nuevo alumno
+    // Método para almacenar un nuevo alumno
+// Método para almacenar un nuevo alumno
+
+public function store(StudentRequest $request)
+{
+
+
+    $request->validated();
+
+    $student = new Student;
+    $student->name_student = $request->name_student;
+    $student->lastname_student = $request->lastname_student;
+    $student->id_student = $request->id_student;
+    $student->birthday = $request->birthday;
+    $student->comments = $request->comments;
+    $student->save();
+
+    return redirect()->route('estudiantes.index')->with('success', 'Datos agregados exitosamente.');
+}
+/*
+
     
-        return redirect()->route('estudiantes.index')->with('success', 'Datos agregados exitosamente.');
-    }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show($id)
+
+    public function show(string $id)
     {
-        $student = Student::find($id);
-        return view('show-student', compact('student'));
+        //
+        $student=Student::find($id);
+        return view('show-student',compact('student'));
     }
 
     /**
-     * Show the form for editing the specified resource.
      */
     public function edit($id)
     {
@@ -65,14 +84,23 @@ class StudentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StudentRequest $request, $id):RedirectResponse
+    public function update(StudentRequest $request, $id): RedirectResponse
     {
-        $student= Student::find($id);
-        $student->update->all();
-        return redirect()->route('estudiantes.index')->with('notificacion','Estudiante edita correctamente');
+
+
+        // dd($request->all());
+
+        $student = Student::find($id);
+        
+        // Actualiza los atributos del estudiante con los datos del formulario
+        $student->update($request->all());
+        
+        return redirect()->route('estudiantes.index')->with('notificacion', 'Estudiante editado correctamente');
     }
 
     /**
+  
+
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)

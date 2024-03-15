@@ -11,13 +11,38 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .logo {
+            max-width: 200px;
+            margin: 0 auto;
+            display: block;
         }
 
-        header {
-            background-color: #00ab84;
+        nav {
+            background-color: #005eab;
             color: white;
-            padding: 10px;
+            padding: 10px 0;
             text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background-color: #004477;
+        }
+
+        .logo {
+            max-width: 200px;
+            margin: 0 auto;
+            display: block;
         }
 
         form {
@@ -26,7 +51,7 @@
             padding: 20px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            background-color: #f8f8f8;
+            background-color: white;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
@@ -37,7 +62,7 @@
         }
 
         input {
-            width: 100%;
+            width: calc(100% - 20px);
             padding: 10px;
             margin-bottom: 15px;
             border: 1px solid #ccc;
@@ -46,20 +71,19 @@
         }
 
         button {
-            background-color: #00ab84;
+            background-color: #005eab;
             color: white;
-            padding: 12px;
+            padding: 12px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
+            transition: background-color 0.3s ease;
         }
 
         button:hover {
-            background-color: #105747;
+            background-color: #004477;
         }
-
-        
 
         p.error-message {
             color: red;
@@ -69,26 +93,19 @@
         }
 
         .back-button {
-            margin-top: 20px;
             text-align: center;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-   
-    <header>
-        <img src="https://lh5.googleusercontent.com/proxy/gh8uxjVzG49LDjhLZgrcMzWVgzWsjuQsdKcVnoXBwk-IOBfNSVMQZ2EhaRIbD01Cd1KBKHBiZdhZK04ziZVFTWYh0udmb8T_7x1NeFrb6oq-5gSa4mVt" alt="Logo UT Cancún">
-    </header>
-
-
-    <br>
-    <br>
-    <div class="back-button">
-        <a href="../../estudiantes">
-            <button type="button">Regresar</button>
-        </a>
-    </div>
-     
+    <nav>
+        <img src="https://lh5.googleusercontent.com/proxy/gh8uxjVzG49LDjhLZgrcMzWVgzWsjuQsdKcVnoXBwk-IOBfNSVMQZ2EhaRIbD01Cd1KBKHBiZdhZK04ziZVFTWYh0udmb8T_7x1NeFrb6oq-5gSa4mVt" alt="Logo UT Cancún" class="logo">
+        <a href="/dashh">Dashboard</a>    
+        <a href="/estudiantes">Alumnos</a>       
+        <a href="#">Calificaciones</a>       
+        <a href="#">Perfil</a>
+    </nav>
 
     <form action="{{ route('estudiantes.update', $student->id) }}" method="POST">
         @csrf
@@ -106,7 +123,13 @@
             <p class="error-message">{{ $message }}</p>
         @enderror
 
-        <button type="submit">Editar</button>
+        <button type="submit">Guardar</button>
     </form>
+
+    <div class="back-button">
+        <a href="../../estudiantes">
+            <button type="button">Regresar</button>
+        </a>
+    </div>
 </body>
 </html>

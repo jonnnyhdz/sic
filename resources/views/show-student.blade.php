@@ -8,94 +8,136 @@
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
+            padding: 0;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            background-color: #f7f7f7;
         }
 
         header {
-            background-color: #00ab84;
+            background-color: #005eab;
             color: white;
-            padding: 10px;
+            padding: 20px 0;
             text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .card {
-            max-width: 400px;
+        .logo {
+            max-width: 200px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .container {
+            max-width: 600px;
             margin: 20px auto;
             padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #f8f8f8;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
+        h1 {
+            text-align: center;
+            color: #005eab;
+            margin-bottom: 20px;
         }
 
-        input {
-            width: 100%;
-            padding: 10px;
+        .details {
             margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            box-sizing: border-box;
         }
 
-        button {
-            background-color: #00ab84;
-            color: white;
-            padding: 12px;
-            border: none;
+        .details p {
+            margin: 10px 0;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .details-value {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f7f7f7;
             border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        button:hover {
-            background-color: #105747;
-        }
-
-        p.error-message {
-            color: red;
-            font-size: 14px;
-            margin-top: -10px;
-            margin-bottom: 10px;
         }
 
         .back-button {
-            margin-top: 20px;
             text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-button a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #005eab;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button a:hover {
+            background-color: #00477a;
+        }
+        nav {
+            background-color: #005eab;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background-color: #004477;
+        }
+        .logo {
+            max-width: 200px;
+            margin: 0 auto;
+            display: block;
         }
     </style>
 </head>
 <body>
-   
-    <header>
-        <img src="https://lh5.googleusercontent.com/proxy/gh8uxjVzG49LDjhLZgrcMzWVgzWsjuQsdKcVnoXBwk-IOBfNSVMQZ2EhaRIbD01Cd1KBKHBiZdhZK04ziZVFTWYh0udmb8T_7x1NeFrb6oq-5gSa4mVt" alt="Logo UT Cancún">
-    </header>
+    <nav>
+        <img src="https://lh5.googleusercontent.com/proxy/gh8uxjVzG49LDjhLZgrcMzWVgzWsjuQsdKcVnoXBwk-IOBfNSVMQZ2EhaRIbD01Cd1KBKHBiZdhZK04ziZVFTWYh0udmb8T_7x1NeFrb6oq-5gSa4mVt" alt="Logo UT Cancún" class="logo">
+        <a href="/dashh">Dashboard</a>    
+        <a href="/estudiantes">Alumnos</a>       
+        <a href="#">Calificaciones</a>       
+        <a href="#">Perfil</a>
+    </nav>
+
+    <div class="container">
+        <h1>Detalles del Estudiante</h1>
+
+        <div class="details">
+            <p>Nombre del estudiante:</p>
+            <div class="details-value">{{$student->name_student}}</div>
+        </div>
+        
+        <div class="details">
+            <p>Apellido del Estudiante:</p>
+            <div class="details-value">{{$student->lastname_student}}</div>
+        </div>
+        <div class="details">
+            <p>Cumpleaños del Estudiante:</p>
+            <div class="details-value">{{$student->birthday}}</div>
+        </div>        
+        <div class="details">
+            <p>Comentarios del Estudiante:</p>
+            <div class="details-value">{{$student->comments}}</div>
+        </div>
+    </div>
 
     <div class="back-button">
-        <a href="../../estudiantes">
-            <button type="button">Regresar</button>
-        </a>
+        <a href="../../estudiantes">Regresar</a>
     </div>
-
-    <div class="card">
-        <h1 align='center'>Detalles Estudiante</h1>
-
-        <p>
-            Nombre del estudiante: {{$student->name_student}}
-        </p>
-        
-        <p>
-            Apellido del Estudiante: {{$student->lastname_student}}
-        </p>
-    </div>
-
 
 </body>
 </html>

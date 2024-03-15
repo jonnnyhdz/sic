@@ -7,6 +7,6 @@
     <title>Denegado</title>
 </head>
 <body>
-    <h1>Acceso No autorizado 🙁</h1>
+    <h1>Página No disponible</h1>
 </body>
 </html>

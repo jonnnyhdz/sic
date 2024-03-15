@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\Student\StudentController;
 use App\Http\Controllers\StudentController;
 // use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StudentReportsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/dashh', function () {
+    return view('dashh');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -30,6 +35,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('reportes/{estudiantes}',[StudentReportsController::class,'show_cardex'])
+->name('reportes.imprimir');
 
 require __DIR__.'/auth.php';
 
@@ -48,9 +56,3 @@ require __DIR__.'/auth.php';
     Route::get('/denegado', function () {
         return view('denegado');
     })->name('denegado'); 
-    
-
-
-
-
-
